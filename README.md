@@ -13,8 +13,10 @@ First two can be installed using Anaconda with _pip install_ the ffmpeg can be e
 Before trying to run the code first go through the Zooniverse_processor workflow, the produced output of this workflow will be used in the code to produce the video's. It is possible to run this code before the **Preparing to export**, since it does not use any of these outputs. 
 
 # Running the code
-The python file Video_production.py should be saved in the wroking directory in which the Zooniverse_processor workflow was executed. Your directory should have a folder files which contains the subdirectory fits/ and generated/. The code is executed using the terminal in the correct directory and typing _python Video_production.py run_ 
+The python file Video_production.py should be saved in the working directory in which the Zooniverse_processor workflow was executed. Your directory should have a folder files which contains the subdirectory fits/ and generated/. The code is executed using the terminal in the correct directory and typing _python Video_production.py run_ 
 
 # Workings
 The code first checks whether the subdirectory where the mp4 videos are written files/generated/mp4/ exists. If it does not yet exist the directory is made. The code then looks at all folders in the files/fits/ directory checking for folders containing HEK events, denoted by SOL in their foldername as written by Zooniverse_processor. For each SOL* folder a sequence of fits files is then taken from the directory and combined using the makevideo function. The results is a mp4 video for each of the HEK events saved in the working directory, saved under fits/generated/mp4/SOL*foldername*.mp4. The function makevideo has by default overwrite=False, this can be changed by the user if desired.  
 
+# UPDATED workflow: Video from png
+Video_production.py has found some issues while testing on different computers. Fits files were not being read correctly and even marked as corrupted, the sunpy maps were not able to read fits files in specific folders. Therefore another code is added here as an alternative solution. It uses the png as made from the Zooniverse_processor, which can be found in the files/generated/png folder. The code should be run in the working directory like Video_production.py, and can be run through _python Video_from_png.py run_.
